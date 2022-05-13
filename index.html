@@ -33,44 +33,159 @@
       <!-- Timeblocks go here -->
       <!-- 9AM -->
       <div class="row">
-        <div class="col-md-1">9AM</div>
-        <div class="col-md-10" style="background: lightgrey">
+        <div class="col-md-1">9am</div>
+        <div class="col-md-10" id="9amApt">
           <span><input id="9am" type="text"/></span>
         </div>
         <div class="col-md-1" data-save="9am" style="background: rgb(0, 179, 255);"><br><img data-save="9am" class="img-responsive center-block d-block mx-auto" src="./disk.png"></div>
       </div>
       <!-- 10AM -->
-      <div class="row 10am">
-        <div class="col-md-1">10AM</div>
-        <div class="col-md-10" style="background: lightgrey;">appointment</div>
-        <div class="col-md-1" style="background: rgb(0, 179, 255);"><br><img class="img-responsive center-block d-block mx-auto" src="./disk.png"></div>
+      <div class="row">
+        <div class="col-md-1">10am</div>
+        <div class="col-md-10" id="10amApt">
+          <span><input id="10am" type="text"/></span>
+        </div>
+        <div class="col-md-1" data-save="10am" style="background: rgb(0, 179, 255);"><br><img data-save="10am" class="img-responsive center-block d-block mx-auto" src="./disk.png"></div>
       </div>
+      <!-- 11AM -->
+      <div class="row">
+        <div class="col-md-1">11am</div>
+        <div class="col-md-10" id="11amApt">
+          <span><input id="11am" type="text"/></span>
+        </div>
+        <div class="col-md-1" data-save="11am" style="background: rgb(0, 179, 255);"><br><img data-save="11am" class="img-responsive center-block d-block mx-auto" src="./disk.png"></div>
+      </div>
+      <!-- 12PM -->
+      <div class="row">
+        <div class="col-md-1">12pm</div>
+        <div class="col-md-10" id="12pmApt">
+          <span><input id="12pm" type="text"/></span>
+        </div>
+        <div class="col-md-1" data-save="12pm" style="background: rgb(0, 179, 255);"><br><img data-save="12pm" class="img-responsive center-block d-block mx-auto" src="./disk.png"></div>
+      </div>     
+      <!-- 1pm -->
+      <div class="row">
+        <div class="col-md-1">1pm</div>
+        <div class="col-md-10" id="1pmApt">
+          <span><input id="1pm" type="text"/></span>
+        </div>
+        <div class="col-md-1" data-save="1pm" style="background: rgb(0, 179, 255);"><br><img data-save="1pm" class="img-responsive center-block d-block mx-auto" src="./disk.png"></div>
+      </div>   
+            <!-- 2pm -->
+      <div class="row">
+        <div class="col-md-1">2pm</div>
+        <div class="col-md-10" id="2pmApt">
+          <span><input id="2pm" type="text"/></span>
+        </div>
+        <div class="col-md-1" data-save="2pm" style="background: rgb(0, 179, 255);"><br><img data-save="2pm" class="img-responsive center-block d-block mx-auto" src="./disk.png"></div>
+      </div>   
+      <!-- 3pm -->
+      <div class="row">
+        <div class="col-md-1">3pm</div>
+        <div class="col-md-10" id="3pmApt">
+          <span><input id="3pm" type="text"/></span>
+        </div>
+        <div class="col-md-1" data-save="3pm" style="background: rgb(0, 179, 255);"><br><img data-save="3pm" class="img-responsive center-block d-block mx-auto" src="./disk.png"></div>
+      </div>   
+      <!-- 4pm -->
+      <div class="row">
+        <div class="col-md-1">4pm</div>
+        <div class="col-md-10" id="4pmApt">
+          <span><input id="4pm" type="text"/></span>
+        </div>
+        <div class="col-md-1" data-save="4pm" style="background: rgb(0, 179, 255);"><br><img data-save="4pm" class="img-responsive center-block d-block mx-auto" src="./disk.png"></div>
+      </div>   
+      <!-- 5pm -->
+      <div class="row">
+        <div class="col-md-1">5pm</div>
+        <div class="col-md-10" id="5pmApt">
+          <span><input id="5pm" type="text"/></span>
+        </div>
+        <div class="col-md-1" data-save="5pm" style="background: rgb(0, 179, 255);"><br><img data-save="5pm" class="img-responsive center-block d-block mx-auto" src="./disk.png"></div>
+      </div>    
 
       
     </div>
 
     <script src="https://code.jquery.com/jquery-3.4.1.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    
     <script>
       $(document).ready(function() {
 
       $("#currentDay").text(moment().format('dddd, MMMM Do YYYY'));
       
       var appointments = Object.keys(localStorage)
+      
       for(i=0;i<appointments.length;i++){
-        switch(appointments[i]){
-          case "9AM":
-            $('#input').val("GeeksForGeeks");
-          break
-          case "10AM":
-
-          break
-          case "11AM":
-
+        var appointmentTime = appointments[i]
+        var appointmentText = localStorage[appointmentTime]
+        console.log(appointments, appointmentTime, appointmentText)
+        switch(appointmentTime){
+          case "9am":
+          case "10am":
+          case "11am":
+          case "12pm":
+          case "1pm":
+          case "2pm":
+          case "3pm":
+          case "4pm":
+          case "5pm":
+            console.log(appointments, appointmentTime, appointmentText)
+            $(`#${appointmentTime}`).val(appointmentText);
           break
         }
       }
 
+      // set background colours
+
+      // get current time
+      // currentTimestamp = moment().unix()
+      
+      console.log('current ts', currentTimestamp)
+      day = moment().format('M/D/YYYY')
+      var currentHour = moment().format("ha")
+        // console.log('current hours', currentHour)
+      
+      
+      //
+      //
+        //! URGENT swap this one out with the one on line 89
+      //
+      //
+      var currentTimestamp = moment(`${day} 11am`, "M/D/YYYY Ha").valueOf()
+      currentHour = moment(currentTimestamp).format("ha")
+      var apts = ['9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm']
+      for(i=0;i<apts.length;i++){
+
+        var appointmentTime = apts[i]
+        if(appointmentTime === currentHour){
+          console.log('current hour', appointmentTime)
+          $(`#${appointmentTime}Apt`).css('background-color', 'red');
+        }else {
+          // here's where to use the timestamp instead
+          var appointmentTimestamp = moment(`${day} ${apts[i]}`, "M/D/YYYY Ha").valueOf()
+          console.log('apt ts', appointmentTimestamp,'\napt time', moment(appointmentTimestamp).format("ha"),'\ncurrent ts', currentTimestamp,'\ncurrent time', moment(currentTimestamp).format("ha"))
+          if(appointmentTimestamp < currentTimestamp){
+            // colour it grey
+            $(`#${appointmentTime}Apt`).css('background-color', 'lightgrey');
+          } else if(appointmentTimestamp > currentTimestamp){
+            // colour it green
+            $(`#${appointmentTime}Apt`).css('background-color', 'lightgreen');
+          }
+
+        }
+
+
+        
+        // compare against current timestamp
+
+      }
+      // var timestamp = moment(`${day} 9am`, "M/D/YYYY Ha").valueOf()
+      
+      // console.log(day)
+      // console.log('ts', )
+      
       // listen for container click events:
 
       $( "#container" ).click(function( event ) {
@@ -78,6 +193,7 @@
             var appointmentTime = event.target.dataset.save
             var appointmentText = $(`#${appointmentTime}`).val();
             localStorage.setItem(appointmentTime, appointmentText);
+            
           }
         });
       });
