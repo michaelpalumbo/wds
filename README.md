@@ -1,2 +1,1 @@
-# wds
-work day scheduler
+# Work Day Scheduler Starter Code
