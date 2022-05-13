@@ -112,83 +112,53 @@
     
     <script>
       $(document).ready(function() {
-
-      $("#currentDay").text(moment().format('dddd, MMMM Do YYYY'));
-      
-      var appointments = Object.keys(localStorage)
-      
-      for(i=0;i<appointments.length;i++){
-        var appointmentTime = appointments[i]
-        var appointmentText = localStorage[appointmentTime]
-        console.log(appointments, appointmentTime, appointmentText)
-        switch(appointmentTime){
-          case "9am":
-          case "10am":
-          case "11am":
-          case "12pm":
-          case "1pm":
-          case "2pm":
-          case "3pm":
-          case "4pm":
-          case "5pm":
-            console.log(appointments, appointmentTime, appointmentText)
-            $(`#${appointmentTime}`).val(appointmentText);
-          break
-        }
-      }
-
-      // set background colours
-
-      // get current time
-      // currentTimestamp = moment().unix()
-      
-      console.log('current ts', currentTimestamp)
-      day = moment().format('M/D/YYYY')
-      var currentHour = moment().format("ha")
-        // console.log('current hours', currentHour)
-      
-      
-      //
-      //
-        //! URGENT swap this one out with the one on line 89
-      //
-      //
-      var currentTimestamp = moment(`${day} 11am`, "M/D/YYYY Ha").valueOf()
-      currentHour = moment(currentTimestamp).format("ha")
-      var apts = ['9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm']
-      for(i=0;i<apts.length;i++){
-
-        var appointmentTime = apts[i]
-        if(appointmentTime === currentHour){
-          console.log('current hour', appointmentTime)
-          $(`#${appointmentTime}Apt`).css('background-color', 'red');
-        }else {
-          // here's where to use the timestamp instead
-          var appointmentTimestamp = moment(`${day} ${apts[i]}`, "M/D/YYYY Ha").valueOf()
-          console.log('apt ts', appointmentTimestamp,'\napt time', moment(appointmentTimestamp).format("ha"),'\ncurrent ts', currentTimestamp,'\ncurrent time', moment(currentTimestamp).format("ha"))
-          if(appointmentTimestamp < currentTimestamp){
-            // colour it grey
-            $(`#${appointmentTime}Apt`).css('background-color', 'lightgrey');
-          } else if(appointmentTimestamp > currentTimestamp){
-            // colour it green
-            $(`#${appointmentTime}Apt`).css('background-color', 'lightgreen');
-          }
-
-        }
-
-
+        // set current date
+        $("#currentDay").text(moment().format('dddd, MMMM Do YYYY'));
         
-        // compare against current timestamp
+        var appointments = Object.keys(localStorage)
+        // recall any saved appointments
+        for(i=0;i<appointments.length;i++){
+          var appointmentTime = appointments[i]
+          var appointmentText = localStorage[appointmentTime]
+          console.log(appointments, appointmentTime, appointmentText)
+          switch(appointmentTime){
+            case "9am":
+            case "10am":
+            case "11am":
+            case "12pm":
+            case "1pm":
+            case "2pm":
+            case "3pm":
+            case "4pm":
+            case "5pm":
+              $(`#${appointmentTime}`).val(appointmentText);
+            break
+          }
+        }
 
-      }
-      // var timestamp = moment(`${day} 9am`, "M/D/YYYY Ha").valueOf()
-      
-      // console.log(day)
-      // console.log('ts', )
-      
-      // listen for container click events:
-
-      $( "#container" ).click(function( event ) {
+        // set background colours
+        currentTimestamp = moment().unix()
+        day = moment().format('M/D/YYYY')
+        var currentHour = moment().format("ha")
+        var apts = ['9am', '10am', '11am', '12pm', '1pm', '2pm', '3pm', '4pm', '5pm']
+        for(i=0;i<apts.length;i++){
+          var appointmentTime = apts[i]
+          if(appointmentTime === currentHour){
+            $(`#${appointmentTime}Apt`).css('background-color', 'red');
+          }else {
+            // here's where to use the timestamp instead
+            var appointmentTimestamp = moment(`${day} ${apts[i]}`, "M/D/YYYY Ha").valueOf()
+            if(appointmentTimestamp < currentTimestamp){
+              // colour it grey
+              $(`#${appointmentTime}Apt`).css('background-color', 'lightgrey');
+            } else if(appointmentTimestamp > currentTimestamp){
+              // colour it green
+              $(`#${appointmentTime}Apt`).css('background-color', 'lightgreen');
+            }
+          }
+        }
+        // listen for container click events:
+        $( "#container" ).click(function( event ) {
           if(event.target.dataset.save){
             var appointmentTime = event.target.dataset.save
             var appointmentText = $(`#${appointmentTime}`).val();
@@ -197,7 +167,6 @@
           }
         });
       });
-
     </script>
   </body>
 </html>
